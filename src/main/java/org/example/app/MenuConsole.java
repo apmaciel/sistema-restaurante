@@ -1,6 +1,6 @@
 package org.example.app;
 
-import org.example.cardapio.Lanche;
+import org.example.cardapio.ItemCardapio;
 import org.example.pedido.Pedido;
 
 import java.util.Collection;
@@ -47,8 +47,8 @@ public class MenuConsole {
 
     public void exibirPedido(Pedido pedido) {
         System.out.println("Pedido nº " + pedido.getNumero() + " - " + pedido.getNomeCliente());
-        for (Lanche l : pedido.getItens()) {
-            System.out.printf("  %s  R$ %.2f%n", l.getNome(), l.getPreco());
+        for (ItemCardapio item : pedido.getItens()) {
+            System.out.printf("  %s  R$ %.2f%n", item.getDescricao(), item.getPreco());
         }
         System.out.printf("Total: R$ %.2f%n", pedido.calcularTotal());
     }
