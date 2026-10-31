@@ -21,24 +21,12 @@ public class Main {
 
                     boolean querMais = true;
                     while (querMais) {
-                        int escolha = menu.lerOpcaoLanche();
-                        Lanche lanche = sistema.criarLanche(escolha);
-
-                        if (lanche == null) {
-                            menu.exibirOpcaoInvalida();
-                        } else {
-                            if (menu.perguntarRetirar("queijo")) lanche.setQueijo(false);
-                            if (menu.perguntarRetirar("alface")) lanche.setAlface(false);
-                            if (menu.perguntarRetirar("tomate")) lanche.setTomate(false);
-                            if (menu.perguntarRetirar("cebola")) lanche.setCebola(false);
-
-                            boolean cheddar = menu.perguntarCheddar();
-                            boolean bacon = menu.perguntarBaconExtra();
-                            sistema.adicionarItem(pedido, lanche, cheddar, bacon);
-                        }
+                        adicionarItemAoPedido(menu, sistema, pedido);
                         querMais = menu.perguntarMaisItem();
                     }
+
                     menu.exibirPedido(pedido);
+
                     break;
 
                 case 2:
@@ -50,6 +38,38 @@ public class Main {
                     menu.exibirFechamentoDoDia(total);
                     break;
 
+                case 4:
+                    int num = menu.lerNumeroPedido();
+                    Pedido p = sistema.buscarPedido(num);
+
+                    if (p == null) {
+                        menu.exibirPedidoNaoEncontrado();
+                        break;
+                    }
+
+                    menu.exibirPedido(p);
+                    int acao = menu.lerAcaoModificar();
+
+                    if (acao == 1) {
+                        adicionarItemAoPedido(menu, sistema, p);        // ← usa o mesmo cartão
+                        menu.exibirPedido(p);
+                    } else if (acao == 2) {
+                        menu.exibirItensNumerados(p);
+                        int item = menu.lerNumeroItem();
+                        if (sistema.removerItem(p, item)) {
+                            menu.exibirPedido(p);
+                        } else {
+                            menu.exibirOpcaoInvalida();
+                        }
+                    } else if (acao == 3) {
+                        sistema.cancelarPedido(num);
+                        menu.exibirPedidoCancelado();
+                    } else {
+                        menu.exibirOpcaoInvalida();
+                    }
+                    break;
+
+
                 case 0:
                     rodando = false;
                     break;
@@ -60,5 +80,24 @@ public class Main {
         }
 
     }
-}
 
+    private static void adicionarItemAoPedido(MenuConsole menu, RestauranteFacade sistema, Pedido pedido) {
+        int escolha = menu.lerOpcaoLanche();
+        Lanche lanche = sistema.criarLanche(escolha);
+
+        if (lanche == null) {
+            menu.exibirOpcaoInvalida();
+            return;
+        }
+        if (menu.perguntarRetirar("queijo")) lanche.setQueijo(false);
+        if (menu.perguntarRetirar("alface")) lanche.setAlface(false);
+        if (menu.perguntarRetirar("tomate")) lanche.setTomate(false);
+        if (menu.perguntarRetirar("cebola")) lanche.setCebola(false);
+
+        boolean cheddar = menu.perguntarCheddar();
+        boolean bacon = menu.perguntarBaconExtra();
+        sistema.adicionarItem(pedido, lanche, cheddar, bacon);
+
+    }
+
+}

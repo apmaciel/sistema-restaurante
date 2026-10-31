@@ -46,5 +46,13 @@ public class Pedido {
        return total;
     }
 
+    public boolean removerItem(int indice) {
+        if (indice < 0 || indice >= itens.size()) {
+            return false;              // posição que não existe
+        }
+        itens.remove(indice);
+        return true;
+    }
+
 
 }

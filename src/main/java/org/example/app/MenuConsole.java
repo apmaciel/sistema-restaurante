@@ -15,6 +15,7 @@ public class MenuConsole {
         System.out.println("1 - Registrar novo pedido");
         System.out.println("2 - Listar pedidos do dia");
         System.out.println("3 - Fechar restaurante");
+        System.out.println("4 - Modificar pedido");
         System.out.println("0 - Sair ");
         System.out.print("Escolha:  " );
     }
@@ -88,5 +89,38 @@ public class MenuConsole {
         System.out.print("Retirar " + ingrediente + "? (s/n): ");
         String resposta = sc.nextLine();
         return resposta.equalsIgnoreCase("s");
+    }
+
+    public int lerNumeroPedido() {
+        System.out.print("Número do pedido: ");
+        return lerOpcao();
+    }
+
+    public int lerAcaoModificar() {
+        System.out.println("1 - Acrescentar item");
+        System.out.println("2 - Remover item");
+        System.out.println("3 - Cancelar pedido");
+        System.out.print("Escolha: ");
+        return lerOpcao();
+    }
+
+    public void exibirItensNumerados(Pedido pedido) {
+        for (int i = 0; i < pedido.getItens().size(); i++) {
+            ItemCardapio item = pedido.getItens().get(i);
+            System.out.printf("%d - %s  R$ %.2f%n", i + 1, item.getDescricao(), item.getPreco());
+        }
+    }
+
+    public int lerNumeroItem() {
+        System.out.print("Qual item remover? ");
+        return lerOpcao();
+    }
+
+    public void exibirPedidoNaoEncontrado() {
+        System.out.println("Pedido não encontrado.");
+    }
+
+    public void exibirPedidoCancelado() {
+        System.out.println("Pedido cancelado.");
     }
 }
