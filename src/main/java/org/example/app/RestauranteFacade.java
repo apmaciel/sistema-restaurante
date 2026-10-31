@@ -1,6 +1,7 @@
 package org.example.app;
 
 import org.example.cardapio.Lanche;
+import org.example.cardapio.LancheFactory;
 import org.example.pedido.GerenciadorPedidos;
 import org.example.pedido.Pedido;
 
@@ -16,9 +17,9 @@ public class RestauranteFacade {
 
     private Lanche criarLanche(int opcao){
         switch (opcao){
-            case 1: return new Lanche("X-Burger", 16.0);
-            case 2: return new Lanche("X-Salada", 18.0);
-            case 3: return new Lanche("X-Bacon", 22.0);
+            case 1: return LancheFactory.xBurger();
+            case 2: return LancheFactory.xSalada();
+            case 3: return LancheFactory.xBacon();
             default: return null;
         }
     }
