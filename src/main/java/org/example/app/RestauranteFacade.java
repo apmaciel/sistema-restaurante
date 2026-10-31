@@ -14,7 +14,7 @@ public class RestauranteFacade {
         return gerenciador.criarPedido(nomeCliente);
     }
 
-    private Lanche criarLanche(int opcao){
+    public Lanche criarLanche(int opcao){
         switch (opcao){
             case 1: return LancheFactory.xBurger();
             case 2: return LancheFactory.xSalada();
@@ -23,15 +23,13 @@ public class RestauranteFacade {
         }
     }
 
-    public boolean adicionarItem(Pedido pedido, int opcaoLanche, boolean cheddar, boolean baconExtra) {
-        Lanche lanche = criarLanche(opcaoLanche);
-        if (lanche == null) {
-            return false;
+    public void adicionarItem(Pedido pedido, Lanche lanche, boolean cheddar, boolean baconExtra) {
+        ItemCardapio item = lanche;
+        if (cheddar) {
+            item = new ComCheddar(item);
         }
 
-        ItemCardapio item = lanche;
-
-        if (cheddar) {
+        if (baconExtra) {
             item = new ComCheddar(item);
         }
         if (baconExtra) {
@@ -39,7 +37,6 @@ public class RestauranteFacade {
         }
 
         pedido.adicionarItem(item);
-        return true;
     }
 
     public Collection<Pedido> getPedidos(){

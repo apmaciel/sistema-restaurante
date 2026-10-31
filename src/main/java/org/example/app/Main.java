@@ -1,5 +1,6 @@
 package org.example.app;
 
+import org.example.cardapio.Lanche;
 import org.example.pedido.Pedido;
 
 public class Main {
@@ -21,10 +22,19 @@ public class Main {
                     boolean querMais = true;
                     while (querMais) {
                         int escolha = menu.lerOpcaoLanche();
-                        boolean cheddar = menu.perguntarCheddar();
-                        boolean bacon = menu.perguntarBaconExtra();
-                        if (!sistema.adicionarItem(pedido, escolha, cheddar, bacon)) {
+                        Lanche lanche = sistema.criarLanche(escolha);
+
+                        if (lanche == null) {
                             menu.exibirOpcaoInvalida();
+                        } else {
+                            if (menu.perguntarRetirar("queijo")) lanche.setQueijo(false);
+                            if (menu.perguntarRetirar("alface")) lanche.setAlface(false);
+                            if (menu.perguntarRetirar("tomate")) lanche.setTomate(false);
+                            if (menu.perguntarRetirar("cebola")) lanche.setCebola(false);
+
+                            boolean cheddar = menu.perguntarCheddar();
+                            boolean bacon = menu.perguntarBaconExtra();
+                            sistema.adicionarItem(pedido, lanche, cheddar, bacon);
                         }
                         querMais = menu.perguntarMaisItem();
                     }
@@ -48,5 +58,7 @@ public class Main {
                     menu.exibirOpcaoInvalida();
             }
         }
+
     }
 }
+

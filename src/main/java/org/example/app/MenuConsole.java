@@ -81,5 +81,12 @@ public class MenuConsole {
         System.out.print("Adicionar bacon extra ( + R$ 6,00) ? (s/n): ");
         String resposta = sc.nextLine();
         return resposta.equalsIgnoreCase("s");
+
+
+    }
+    public boolean perguntarRetirar(String ingrediente){
+        System.out.print("Retirar " + ingrediente + "? (s/n): ");
+        String resposta = sc.nextLine();
+        return resposta.equalsIgnoreCase("s");
     }
 }
