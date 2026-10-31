@@ -1,7 +1,6 @@
 package org.example.app;
 
-import org.example.cardapio.Lanche;
-import org.example.cardapio.LancheFactory;
+import org.example.cardapio.*;
 import org.example.pedido.GerenciadorPedidos;
 import org.example.pedido.Pedido;
 
@@ -24,12 +23,22 @@ public class RestauranteFacade {
         }
     }
 
-    public boolean adicionarItem(Pedido pedido, int opcaoLanche){
+    public boolean adicionarItem(Pedido pedido, int opcaoLanche, boolean cheddar, boolean baconExtra) {
         Lanche lanche = criarLanche(opcaoLanche);
-        if (lanche == null){
-            return  false;
+        if (lanche == null) {
+            return false;
         }
-        pedido.adicionarItem(lanche);
+
+        ItemCardapio item = lanche;
+
+        if (cheddar) {
+            item = new ComCheddar(item);
+        }
+        if (baconExtra) {
+            item = new ComBaconExtra(item);
+        }
+
+        pedido.adicionarItem(item);
         return true;
     }
 

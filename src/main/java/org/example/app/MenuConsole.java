@@ -70,4 +70,16 @@ public class MenuConsole {
     public void exibirOpcaoInvalida(){
         System.out.println("Opção inválida, tente de novo.");
     }
+
+    public boolean perguntarCheddar(){
+        System.out.print("Adicionar cheddar ( + R$ 4,00) ? (s/n): ");
+        String resposta = sc.nextLine();
+        return resposta.equalsIgnoreCase("s");
+    }
+
+    public boolean perguntarBaconExtra(){
+        System.out.print("Adicionar bacon extra ( + R$ 6,00) ? (s/n): ");
+        String resposta = sc.nextLine();
+        return resposta.equalsIgnoreCase("s");
+    }
 }

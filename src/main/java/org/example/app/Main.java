@@ -21,7 +21,9 @@ public class Main {
                     boolean querMais = true;
                     while (querMais) {
                         int escolha = menu.lerOpcaoLanche();
-                        if (!sistema.adicionarItem(pedido, escolha)) {
+                        boolean cheddar = menu.perguntarCheddar();
+                        boolean bacon = menu.perguntarBaconExtra();
+                        if (!sistema.adicionarItem(pedido, escolha, cheddar, bacon)) {
                             menu.exibirOpcaoInvalida();
                         }
                         querMais = menu.perguntarMaisItem();
