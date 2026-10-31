@@ -4,6 +4,7 @@ import org.example.pedido.Pedido;
 
 public class Main {
     static void main() {
+
         MenuConsole menu = new MenuConsole();
         RestauranteFacade sistema = new RestauranteFacade();
         boolean rodando = true;
