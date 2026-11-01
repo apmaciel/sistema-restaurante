@@ -17,7 +17,14 @@ public class Main {
             switch (op) {
                 case 1:
                     String nome = menu.lerNomeCliente();
-                    Pedido pedido = sistema.criarPedido(nome);
+
+                    Pedido pedido;
+                    try {
+                        pedido = sistema.criarPedido(nome);
+                    } catch (IllegalArgumentException e) {
+                        menu.exibirErro(e.getMessage());
+                        break;
+                    }
 
                     boolean querMais = true;
                     while (querMais) {
@@ -26,8 +33,8 @@ public class Main {
                     }
 
                     menu.exibirPedido(pedido);
-
                     break;
+
 
                 case 2:
                     menu.exibirListaPedidos(sistema.getPedidos());

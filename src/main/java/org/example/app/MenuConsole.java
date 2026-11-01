@@ -5,6 +5,7 @@ import org.example.pedido.Pedido;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuConsole {
@@ -22,9 +23,16 @@ public class MenuConsole {
     }
 
     public  int lerOpcao(){
-        int op = sc.nextInt();
-        sc.nextLine();
-        return op;
+        while (true) {
+            try {
+                int op = sc.nextInt();
+                sc.nextLine();
+                return op;
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.print("Digite apenas números: ");
+            }
+        }
     }
 
     public String lerNomeCliente(){
@@ -66,7 +74,7 @@ public class MenuConsole {
     }
 
     public void exibirFechamentoDoDia(double total){
-        System.out.printf("=== Fechamento === %nTotal vendido: R$ %.2f%n" , total);
+        System.out.printf("=== Fechamento === %nTotal vendido: R$ %.2f%n"  , total);
     }
 
     public void exibirOpcaoInvalida(){
@@ -130,5 +138,8 @@ public class MenuConsole {
         for (String c : combinacoes) {
             System.out.println("  - " + c);
         }
+    }
+    public void exibirErro(String mensagem) {
+        System.out.println("Erro: " + mensagem);
     }
 }
