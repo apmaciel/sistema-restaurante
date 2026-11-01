@@ -1,7 +1,10 @@
 package org.example.pedido;
 
+import org.example.cardapio.ItemCardapio;
+
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class GerenciadorPedidos {
 
@@ -34,5 +37,15 @@ public class GerenciadorPedidos {
 
     public boolean cancelarPedido(int numero){
         return pedidos.remove(numero) !=null;
+    }
+
+    public HashSet<String> getCombinacoes() {
+        HashSet<String> combinacoes = new HashSet<>();
+        for (Pedido p : pedidos.values()) {
+            for (ItemCardapio item : p.getItens()) {
+                combinacoes.add(item.getDescricao());
+            }
+        }
+        return combinacoes;
     }
 }

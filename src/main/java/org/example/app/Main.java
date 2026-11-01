@@ -36,6 +36,7 @@ public class Main {
                 case 3:
                     double total = sistema.calcularTotalDoDia();
                     menu.exibirFechamentoDoDia(total);
+                    menu.exibirCombinacoes(sistema.getCombinacoes());
                     break;
 
                 case 4:

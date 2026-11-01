@@ -5,6 +5,8 @@ import org.example.pedido.GerenciadorPedidos;
 import org.example.pedido.Pedido;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class RestauranteFacade {
 
@@ -28,14 +30,9 @@ public class RestauranteFacade {
         if (cheddar) {
             item = new ComCheddar(item);
         }
-
-        if (baconExtra) {
-            item = new ComCheddar(item);
-        }
         if (baconExtra) {
             item = new ComBaconExtra(item);
         }
-
         pedido.adicionarItem(item);
     }
 
@@ -57,5 +54,9 @@ public class RestauranteFacade {
 
     public boolean removerItem(Pedido pedido, int numeroItem) {
         return pedido.removerItem(numeroItem - 1);
+    }
+
+    public HashSet<String> getCombinacoes(){
+        return gerenciador.getCombinacoes();
     }
 }

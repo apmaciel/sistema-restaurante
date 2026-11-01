@@ -4,6 +4,7 @@ import org.example.cardapio.ItemCardapio;
 import org.example.pedido.Pedido;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class MenuConsole {
@@ -65,7 +66,7 @@ public class MenuConsole {
     }
 
     public void exibirFechamentoDoDia(double total){
-        System.out.printf("=== Fechamento === %nTotal vendido: R$ %.2f ", total);
+        System.out.printf("=== Fechamento === %nTotal vendido: R$ %.2f%n" , total);
     }
 
     public void exibirOpcaoInvalida(){
@@ -122,5 +123,12 @@ public class MenuConsole {
 
     public void exibirPedidoCancelado() {
         System.out.println("Pedido cancelado.");
+    }
+
+    public void exibirCombinacoes(HashSet<String> combinacoes) {
+        System.out.println("Combinações diferentes: " + combinacoes.size());
+        for (String c : combinacoes) {
+            System.out.println("  - " + c);
+        }
     }
 }
