@@ -4,7 +4,7 @@ Sistema em Java (console) para um restaurante: cardápio, pedidos,
 personalização dos lanches e fechamento do dia.
 
 ## Vídeo
-[Assista aqui] https://youtu.be/LX86YDB0lmc
+Assista aqui ->  https://youtu.be/LX86YDB0lmc
 
 ## O que foi feito
 
